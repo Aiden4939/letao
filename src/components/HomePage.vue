@@ -206,10 +206,10 @@ const modules = [Autoplay, Pagination, Navigation, EffectCoverflow];
 
 <template>
   <!-- Header -->
-  <header class="">
+  <header class="w-100 position-fixed top-0 left-0" style="z-index: 100;">
     <!-- Header上半部 -->
     <div
-      class="top flex-row d-flex justify-content-between align-items-center px-3"
+      class="w-100 top flex-row d-flex justify-content-between align-items-center px-3"
     >
       <div class="menu-btn"><i class="fa-solid fa-bars"></i></div>
       <div class="search">
@@ -237,7 +237,7 @@ const modules = [Autoplay, Pagination, Navigation, EffectCoverflow];
   <!-- 主要內容 -->
   <main class="d-flex flex-column">
     <!-- 輪播牆 -->
-    <div class="row ">
+    <div class="row">
       <swiper
         :slidesPerView="1"
         :spaceBetween="2"
@@ -260,7 +260,7 @@ const modules = [Autoplay, Pagination, Navigation, EffectCoverflow];
     </div>
 
     <!-- 各種card包裹的main -->
-    <div class="row p-3 ">
+    <div class="row p-3">
       <div class="cards">
         <div class="card">
           <div class="card-header border-0 bg-white pt-3">會員專屬加值服務</div>
@@ -283,7 +283,7 @@ const modules = [Autoplay, Pagination, Navigation, EffectCoverflow];
     </div>
   </main>
   <!-- Footer -->
-  <footer>footer</footer>
+  <footer class="position-fixed bottom-0">footer</footer>
 </template>
 
 <style scoped lang="scss">
