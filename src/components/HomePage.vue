@@ -235,39 +235,48 @@ const modules = [Autoplay, Pagination, Navigation, EffectCoverflow];
     </div>
   </header>
   <!-- 主要內容 -->
-  <main>
+  <main class="d-flex flex-column">
     <!-- 輪播牆 -->
-    <swiper
-      :slidesPerView="1"
-      :spaceBetween="2"
-      :pagination="{
-        clickable: true,
-      }"
-      :centeredSlides="true"
-      :loop="true"
-      :autoplay="{
-        delay: 2500,
-        disableOnInteraction: false,
-      }"
-      :modules="modules"
-      class="mySwiper"
-    >
-      <swiper-slide v-for="s in swiperImg"
-        ><img :key="s.id" :src="s.src" alt=""
-      /></swiper-slide>
-    </swiper>
-    <!-- 各種橫向商品 -->
-    <div class="scroll-items d-flex flex-row">
-      <!-- <div v-for="s in serviceList" :key="s.id">
-        <img :src="s.src" alt="" />
-      </div> -->
-      <div v-for="s in serviceList" :key="s.id" class="w-25">
-        <div class="card" style="">
-          <img :src="s.src" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <p class="card-text text-center small-font">
-              {{ s.name }}
-            </p>
+    <div class="row ">
+      <swiper
+        :slidesPerView="1"
+        :spaceBetween="2"
+        :pagination="{
+          clickable: true,
+        }"
+        :centeredSlides="true"
+        :loop="true"
+        :autoplay="{
+          delay: 2500,
+          disableOnInteraction: false,
+        }"
+        :modules="modules"
+        class="mySwiper"
+      >
+        <swiper-slide v-for="s in swiperImg"
+          ><img :key="s.id" :src="s.src" alt=""
+        /></swiper-slide>
+      </swiper>
+    </div>
+
+    <!-- 各種card包裹的main -->
+    <div class="row p-3 ">
+      <div class="cards">
+        <div class="card">
+          <div class="card-header border-0 bg-white pt-3">會員專屬加值服務</div>
+          <div class="card-body p-2 pt-0">
+            <div class="scroll-items d-flex flex-row">
+              <div v-for="s in serviceList" :key="s.id" class="w-25">
+                <div class="card p-1 border-0" style="">
+                  <img :src="s.src" class="card-img-top" alt="..." />
+                  <div class="card-body p-0">
+                    <p class="card-text text-center small-font">
+                      {{ s.name }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -282,7 +291,7 @@ header {
   background-color: #ffffff00;
 
   .top {
-    background-color: #fbd4ff;
+    background-color: #fafafa;
     width: 100%;
     display: flex;
 
@@ -290,7 +299,7 @@ header {
     }
   }
   .bottom {
-    background-color: #ecffd7;
+    background-color: #fafafa;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }

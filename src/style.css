@@ -4,6 +4,7 @@
   padding: 0;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
+/* reset */
 html,
 body,
 div,
@@ -127,4 +128,8 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+/* start */
+body {
+  background-color: #f0f0f0;
 }
