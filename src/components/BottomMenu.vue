@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{ id: number; name: string }>();
+defineProps<{ id: number; name: string | undefined }>();
 </script>
 <template>
   <div class="">
