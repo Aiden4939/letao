@@ -183,6 +183,34 @@ const serviceList: ListType[] = [
     src: "https://letaoimg.s3-ap-northeast-1.amazonaws.com/common/icon/yahoojp/ic_05.png",
   },
 ];
+
+const footerList: ListType[] = [
+  {
+    id: 1,
+    name: "首頁",
+    src: "fa-solid fa-house",
+  },
+  {
+    id: 2,
+    name: "追蹤",
+    src: "fa-regular fa-heart",
+  },
+  {
+    id: 3,
+    name: "通知",
+    src: "fa-regular fa-bell",
+  },
+  {
+    id: 4,
+    name: "購物車",
+    src: "fa-solid fa-cart-shopping",
+  },
+  {
+    id: 5,
+    name: "會員",
+    src: "fa-regular fa-user",
+  },
+];
 const phoneList: ListType[] = [
   {
     id: 1,
@@ -269,12 +297,17 @@ const modules = [Autoplay, Pagination, Navigation, EffectCoverflow];
 
 <template>
   <!-- Header -->
-  <header class="">
+  <header class="bg-primary">
     <!-- Header上半部 -->
     <div
-      class="w-100 top flex-row d-flex justify-content-between align-items-center px-3"
+      class="w-100 top flex-row d-flex justify-content-between align-items-center px-3 py-2"
     >
-      <div class="menu-btn"><i class="fa-solid fa-bars"></i></div>
+      <img
+        class=""
+        src="https://play-lh.googleusercontent.com/1MIQm5yp2cNfBfIoxdik_TA-6IqGGaMbvaxni241B5lKyLi6TiHrmGB0lGFequn1z0g5=w240-h480-rw"
+        alt=""
+        style="width: 36px"
+      />
       <div class="search">
         <input
           type="email"
@@ -283,11 +316,11 @@ const modules = [Autoplay, Pagination, Navigation, EffectCoverflow];
           aria-describedby="emailHelp"
         />
       </div>
-      <div class="reload"><i class="fa-solid fa-rotate-right"></i></div>
+      <div class="reload"><i class="fa-solid fa-gear"></i></div>
     </div>
     <!-- Header下半部 -->
     <div
-      class="bottom d-flex flex-row flex-nowrap overflow-auto align-items-center p-2"
+      class="bottom d-flex flex-row flex-nowrap overflow-auto align-items-center"
     >
       <BottomMenu
         v-for="item in buyList"
@@ -297,6 +330,7 @@ const modules = [Autoplay, Pagination, Navigation, EffectCoverflow];
       />
     </div>
   </header>
+  <div style="height: calc(90px)"></div>
   <!-- 主要內容 -->
   <main class="d-flex flex-column">
     <!-- 輪播牆 -->
@@ -342,22 +376,14 @@ const modules = [Autoplay, Pagination, Navigation, EffectCoverflow];
             </div>
           </div>
         </div>
+
+        <!-- 圖片 -->
         <div class="card mb-3">
-          <div class="card-header border-0 bg-white pt-3">樂淘期間限定優惠</div>
-          <div class="card-body p-2 pt-0">
-            <div class="scroll-items d-flex flex-row">
-              <div v-for="s in serviceList" :key="s.id" class="w-25">
-                <div class="card p-1 border-0" style="">
-                  <img :src="s.src" class="card-img-top" alt="..." />
-                  <div class="card-body p-0">
-                    <p class="card-text text-center small-font">
-                      {{ s.name }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <img
+            class="w-100"
+            src="https://letaoimg.s3-ap-northeast-1.amazonaws.com/events/others/subbn_02.jpg"
+            alt=""
+          />
         </div>
         <div class="card mb-3">
           <div class="card-header border-0 bg-white pt-3">電腦周邊</div>
@@ -399,14 +425,36 @@ const modules = [Autoplay, Pagination, Navigation, EffectCoverflow];
           </div>
         </div>
         <div class="card mb-3">
-          <div class="card-header border-0 bg-white pt-3">會員專屬加值服務</div>
+          <div class="card-header border-0 bg-white pt-3">電腦周邊</div>
+          <div
+            class="d-flex flex-row flex-nowrap overflow-auto align-items-center ms-3 no-scroll-bar"
+          >
+            <div
+              v-for="cate in categories"
+              :key="cate.id"
+              class="rounded-pill bg-body-secondary p-2 me-2"
+            >
+              <p class="text-nowrap">
+                {{ cate.name }}
+              </p>
+            </div>
+          </div>
+          <div class="picture d-flex align-items-center p-3">
+            <img
+              class="w-100 mx-auto rounded"
+              src="https://letaoimg.s3-ap-northeast-1.amazonaws.com/events/20240701_unboxing/web_mainbn.jpg?t=1719451504"
+              alt=""
+            />
+          </div>
           <div class="card-body p-2 pt-0">
-            <div class="scroll-items d-flex flex-row">
-              <div v-for="s in serviceList" :key="s.id" class="w-25">
+            <div
+              class="scroll-items d-flex flex-row d-flex flex-row flex-nowrap overflow-auto align-items-center ps-3 no-scroll-bar"
+            >
+              <div v-for="s in phoneList" :key="s.id" class="w-25 me-2">
                 <div class="card p-1 border-0" style="">
                   <img :src="s.src" class="card-img-top" alt="..." />
                   <div class="card-body p-0">
-                    <p class="card-text text-center small-font">
+                    <p class="card-text text-center small-font skip">
                       {{ s.name }}
                     </p>
                   </div>
@@ -415,6 +463,47 @@ const modules = [Autoplay, Pagination, Navigation, EffectCoverflow];
             </div>
           </div>
         </div>
+        <div class="card mb-3">
+          <div class="card-header border-0 bg-white pt-3">電腦周邊</div>
+          <div
+            class="d-flex flex-row flex-nowrap overflow-auto align-items-center ms-3 no-scroll-bar"
+          >
+            <div
+              v-for="cate in categories"
+              :key="cate.id"
+              class="rounded-pill bg-body-secondary p-2 me-2"
+            >
+              <p class="text-nowrap">
+                {{ cate.name }}
+              </p>
+            </div>
+          </div>
+          <div class="picture d-flex align-items-center p-3">
+            <img
+              class="w-100 mx-auto rounded"
+              src="https://letaoimg.s3-ap-northeast-1.amazonaws.com/events/others/subbn_03.jpg"
+              alt=""
+            />
+          </div>
+          <div class="card-body p-2 pt-0">
+            <div
+              class="scroll-items d-flex flex-row d-flex flex-row flex-nowrap overflow-auto align-items-center ps-3 no-scroll-bar"
+            >
+              <div v-for="s in phoneList" :key="s.id" class="w-25 me-2">
+                <div class="card p-1 border-0" style="">
+                  <img :src="s.src" class="card-img-top" alt="..." />
+                  <div class="card-body p-0">
+                    <p class="card-text text-center small-font skip">
+                      {{ s.name }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cards p-0">
         <div class="card mb-3">
           <div class="card-header border-0 bg-white pt-3">會員專屬加值服務</div>
           <div class="card-body p-2 pt-0">
@@ -432,15 +521,46 @@ const modules = [Autoplay, Pagination, Navigation, EffectCoverflow];
             </div>
           </div>
         </div>
+
+        <!-- 圖片 -->
         <div class="card mb-3">
-          <div class="card-header border-0 bg-white pt-3">會員專屬加值服務</div>
+          <img
+            class="w-100"
+            src="https://letaoimg.s3-ap-northeast-1.amazonaws.com/events/others/subbn_02.jpg"
+            alt=""
+          />
+        </div>
+        <div class="card mb-3">
+          <div class="card-header border-0 bg-white pt-3">電腦周邊</div>
+          <div
+            class="d-flex flex-row flex-nowrap overflow-auto align-items-center ms-3 no-scroll-bar"
+          >
+            <div
+              v-for="cate in categories"
+              :key="cate.id"
+              class="rounded-pill bg-body-secondary p-2 me-2"
+            >
+              <p class="text-nowrap">
+                {{ cate.name }}
+              </p>
+            </div>
+          </div>
+          <div class="picture d-flex align-items-center p-3">
+            <img
+              class="w-100 mx-auto rounded"
+              src="https://letaoimg.s3-ap-northeast-1.amazonaws.com/events/others/subbn_01.jpg"
+              alt=""
+            />
+          </div>
           <div class="card-body p-2 pt-0">
-            <div class="scroll-items d-flex flex-row">
-              <div v-for="s in serviceList" :key="s.id" class="w-15">
+            <div
+              class="scroll-items d-flex flex-row d-flex flex-row flex-nowrap overflow-auto align-items-center ps-3 no-scroll-bar"
+            >
+              <div v-for="s in phoneList" :key="s.id" class="w-25 me-2">
                 <div class="card p-1 border-0" style="">
                   <img :src="s.src" class="card-img-top" alt="..." />
                   <div class="card-body p-0">
-                    <p class="card-text text-center small-font">
+                    <p class="card-text text-center small-font skip">
                       {{ s.name }}
                     </p>
                   </div>
@@ -450,14 +570,75 @@ const modules = [Autoplay, Pagination, Navigation, EffectCoverflow];
           </div>
         </div>
         <div class="card mb-3">
-          <div class="card-header border-0 bg-white pt-3">會員專屬加值服務</div>
+          <div class="card-header border-0 bg-white pt-3">電腦周邊</div>
+          <div
+            class="d-flex flex-row flex-nowrap overflow-auto align-items-center ms-3 no-scroll-bar"
+          >
+            <div
+              v-for="cate in categories"
+              :key="cate.id"
+              class="rounded-pill bg-body-secondary p-2 me-2"
+            >
+              <p class="text-nowrap">
+                {{ cate.name }}
+              </p>
+            </div>
+          </div>
+          <div class="picture d-flex align-items-center p-3">
+            <img
+              class="w-100 mx-auto rounded"
+              src="https://letaoimg.s3-ap-northeast-1.amazonaws.com/events/20240701_unboxing/web_mainbn.jpg?t=1719451504"
+              alt=""
+            />
+          </div>
           <div class="card-body p-2 pt-0">
-            <div class="scroll-items d-flex flex-row">
-              <div v-for="s in serviceList" :key="s.id" class="w-25">
+            <div
+              class="scroll-items d-flex flex-row d-flex flex-row flex-nowrap overflow-auto align-items-center ps-3 no-scroll-bar"
+            >
+              <div v-for="s in phoneList" :key="s.id" class="w-25 me-2">
                 <div class="card p-1 border-0" style="">
                   <img :src="s.src" class="card-img-top" alt="..." />
                   <div class="card-body p-0">
-                    <p class="card-text text-center small-font">
+                    <p class="card-text text-center small-font skip">
+                      {{ s.name }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header border-0 bg-white pt-3">電腦周邊</div>
+          <div
+            class="d-flex flex-row flex-nowrap overflow-auto align-items-center ms-3 no-scroll-bar"
+          >
+            <div
+              v-for="cate in categories"
+              :key="cate.id"
+              class="rounded-pill bg-body-secondary p-2 me-2"
+            >
+              <p class="text-nowrap">
+                {{ cate.name }}
+              </p>
+            </div>
+          </div>
+          <div class="picture d-flex align-items-center p-3">
+            <img
+              class="w-100 mx-auto rounded"
+              src="https://letaoimg.s3-ap-northeast-1.amazonaws.com/events/others/subbn_03.jpg"
+              alt=""
+            />
+          </div>
+          <div class="card-body p-2 pt-0">
+            <div
+              class="scroll-items d-flex flex-row d-flex flex-row flex-nowrap overflow-auto align-items-center ps-3 no-scroll-bar"
+            >
+              <div v-for="s in phoneList" :key="s.id" class="w-25 me-2">
+                <div class="card p-1 border-0" style="">
+                  <img :src="s.src" class="card-img-top" alt="..." />
+                  <div class="card-body p-0">
+                    <p class="card-text text-center small-font skip">
                       {{ s.name }}
                     </p>
                   </div>
@@ -470,14 +651,34 @@ const modules = [Autoplay, Pagination, Navigation, EffectCoverflow];
     </div>
   </main>
   <!-- Footer -->
-  <footer class="position-fixed" style="bottom: 0; left: 0; z-index: 100">
-    footer
+  <div style="height: calc(60px)"></div>
+
+  <footer
+    class="position-fixed w-100 bg-white"
+    style="bottom: 0; left: 0; z-index: 100"
+  >
+    <div class="card-body p-2 pt-0">
+      <div class="scroll-items d-flex flex-row">
+        <div v-for="s in footerList" :key="s.id" class="w-25">
+          <div class="card p-1 border-0" style="">
+            <i :class="`${s.src} text-center fs-1 my-1`"></i>
+            <div class="card-body p-0">
+              <p class="card-text text-center">
+                {{ s.name }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </footer>
 </template>
 
 <style scoped lang="scss">
 header {
-  background-color: #ffffff00;
+  // background-color: #ffffff00;
+  background-color: #0277fd;
+  color: white;
   position: fixed;
   width: 100%;
   left: 0;
@@ -485,7 +686,7 @@ header {
   top: 0;
   z-index: 100;
   .top {
-    background-color: #fafafa;
+    // background-color: #fafafa;
     width: 100%;
     display: flex;
 
@@ -493,7 +694,7 @@ header {
     }
   }
   .bottom {
-    background-color: #fafafa;
+    // background-color: #fafafa;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
