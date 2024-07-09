@@ -24,6 +24,22 @@ interface ListType {
   src?: string | undefined;
 }
 
+const categories: ListType[] = [
+  { id: 1, name: "工作站" },
+  { id: 2, name: "平板電腦" },
+  { id: 3, name: "伺服器" },
+  { id: 4, name: "個人電腦" },
+  { id: 5, name: "網域名" },
+  { id: 6, name: "翻譯機" },
+  { id: 7, name: "軟體" },
+  { id: 8, name: "零件" },
+  { id: 9, name: "電子書閱讀器" },
+  { id: 10, name: "週邊商品" },
+  { id: 11, name: "PDA" },
+  { id: 12, name: "消耗用品" },
+  { id: 13, name: "其他" },
+];
+
 // const itemList: ListType[] = [
 //   { id: 118, name: "幼兒服裝、鞋" },
 //   { id: 119, name: "包、雙背帶書包" },
@@ -167,6 +183,53 @@ const serviceList: ListType[] = [
     src: "https://letaoimg.s3-ap-northeast-1.amazonaws.com/common/icon/yahoojp/ic_05.png",
   },
 ];
+const phoneList: ListType[] = [
+  {
+    id: 1,
+    name: "【ASUS 華碩】14吋Ultra7輕薄AI筆電",
+    src: "//img2.momoshop.com.tw/ecm/img/online/19/999/00/000/bt_2_200_01/bt_2_200_01_e2.jpg?t=1720521395136",
+  },
+  {
+    id: 2,
+    name: "創見HUB組★【MSI】14吋Ultra7-155H RTX3050 輕薄AI筆電(Prestige 14 AI Studio/32G/1TB SSD/W11/010TW)",
+    src: "//img2.momoshop.com.tw/ecm/img/online/19/999/00/000/bt_2_200_01/bt_2_200_01_e6.jpg?t=1720521395139",
+  },
+  {
+    id: 3,
+    name: "【HP 惠普】14吋 Core Ultra 5-125H OLED 輕薄EVO AI筆電(Pavilion Plus 14-ew1023TU/16G/512G SSD/W11)",
+    src: "//img2.momoshop.com.tw/ecm/img/online/19/999/00/000/bt_2_200_01/bt_2_200_01_e10.jpg?t=1720521395141",
+  },
+  {
+    id: 4,
+    name: "【Acer 宏碁】16吋Ultra 7輕薄AI筆電(Swift Go/SFG16-72-74C7/Ultra 7-155H/32G/512G/W11/OLED)",
+    src: "//img2.momoshop.com.tw/ecm/img/online/19/999/00/000/bt_2_200_01/bt_2_200_01_e14.jpg?t=1720521395144",
+  },
+  {
+    id: 5,
+    name: "【Lenovo】14吋Ultra 5輕薄筆電(IdeaPad Slim 5/83DA006HTW/Ultra 5-125H/16GB/1TB SSD/W11/AI PC/灰)",
+    src: "//img2.momoshop.com.tw/ecm/img/online/19/999/00/000/bt_2_200_01/bt_2_200_01_e18.jpg?t=1720521395146",
+  },
+  {
+    id: 6,
+    name: "【Microsoft 微軟】CoPilot鍵盤蓋+筆+365個人版組★Surface Pro-第11版 13吋(X Plus/16G/512G/W11)",
+    src: "//img2.momoshop.com.tw/ecm/img/online/19/999/00/000/bt_2_200_01/bt_2_200_01_e22.jpg?t=1720521395148",
+  },
+  {
+    id: 7,
+    name: "【Microsoft 微軟】CoPilot鍵盤蓋+筆+365個人版組★Surface Pro-第11版 13吋(X Plus/16G/512G/W11)",
+    src: "//img2.momoshop.com.tw/ecm/img/online/19/999/00/000/bt_2_200_01/bt_2_200_01_e22.jpg?t=1720521395148",
+  },
+  {
+    id: 8,
+    name: "【Acer 宏碁】RB102 Ultra5 迷你電腦(RB102/Ultra5-125U/8G/512G SSD/W11)",
+    src: "//img2.momoshop.com.tw/ecm/img/online/19/999/00/000/bt_2_200_01/bt_2_200_01_e26.jpg?t=1720521395151",
+  },
+  {
+    id: 9,
+    name: "【微星平台】i7二十核GeForce RTX 4070{魔幻少年}海景房電競機(I7-14700F/B760/32G/1TB)",
+    src: "//img2.momoshop.com.tw/ecm/img/online/19/999/00/000/bt_2_200_01/bt_2_200_01_e63.jpg?t=1720521395154",
+  },
+];
 
 const buyList: ListType[] = [
   { id: 1, name: "日本Yahoo拍賣" },
@@ -206,7 +269,7 @@ const modules = [Autoplay, Pagination, Navigation, EffectCoverflow];
 
 <template>
   <!-- Header -->
-  <header class="w-100 position-fixed top-0 left-0" style="z-index: 100;">
+  <header class="">
     <!-- Header上半部 -->
     <div
       class="w-100 top flex-row d-flex justify-content-between align-items-center px-3"
@@ -237,7 +300,7 @@ const modules = [Autoplay, Pagination, Navigation, EffectCoverflow];
   <!-- 主要內容 -->
   <main class="d-flex flex-column">
     <!-- 輪播牆 -->
-    <div class="row">
+    <div class="w-100">
       <swiper
         :slidesPerView="1"
         :spaceBetween="2"
@@ -260,9 +323,133 @@ const modules = [Autoplay, Pagination, Navigation, EffectCoverflow];
     </div>
 
     <!-- 各種card包裹的main -->
-    <div class="row p-3">
-      <div class="cards">
-        <div class="card">
+    <div class="w-100 p-3">
+      <div class="cards p-0">
+        <div class="card mb-3">
+          <div class="card-header border-0 bg-white pt-3">會員專屬加值服務</div>
+          <div class="card-body p-2 pt-0">
+            <div class="scroll-items d-flex flex-row">
+              <div v-for="s in serviceList" :key="s.id" class="w-25">
+                <div class="card p-1 border-0" style="">
+                  <img :src="s.src" class="card-img-top" alt="..." />
+                  <div class="card-body p-0">
+                    <p class="card-text text-center small-font">
+                      {{ s.name }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header border-0 bg-white pt-3">樂淘期間限定優惠</div>
+          <div class="card-body p-2 pt-0">
+            <div class="scroll-items d-flex flex-row">
+              <div v-for="s in serviceList" :key="s.id" class="w-25">
+                <div class="card p-1 border-0" style="">
+                  <img :src="s.src" class="card-img-top" alt="..." />
+                  <div class="card-body p-0">
+                    <p class="card-text text-center small-font">
+                      {{ s.name }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header border-0 bg-white pt-3">電腦周邊</div>
+          <div
+            class="d-flex flex-row flex-nowrap overflow-auto align-items-center ms-3 no-scroll-bar"
+          >
+            <div
+              v-for="cate in categories"
+              :key="cate.id"
+              class="rounded-pill bg-body-secondary p-2 me-2"
+            >
+              <p class="text-nowrap">
+                {{ cate.name }}
+              </p>
+            </div>
+          </div>
+          <div class="picture d-flex align-items-center p-3">
+            <img
+              class="w-100 mx-auto rounded"
+              src="https://letaoimg.s3-ap-northeast-1.amazonaws.com/events/others/subbn_01.jpg"
+              alt=""
+            />
+          </div>
+          <div class="card-body p-2 pt-0">
+            <div
+              class="scroll-items d-flex flex-row d-flex flex-row flex-nowrap overflow-auto align-items-center ps-3 no-scroll-bar"
+            >
+              <div v-for="s in phoneList" :key="s.id" class="w-25 me-2">
+                <div class="card p-1 border-0" style="">
+                  <img :src="s.src" class="card-img-top" alt="..." />
+                  <div class="card-body p-0">
+                    <p class="card-text text-center small-font skip">
+                      {{ s.name }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header border-0 bg-white pt-3">會員專屬加值服務</div>
+          <div class="card-body p-2 pt-0">
+            <div class="scroll-items d-flex flex-row">
+              <div v-for="s in serviceList" :key="s.id" class="w-25">
+                <div class="card p-1 border-0" style="">
+                  <img :src="s.src" class="card-img-top" alt="..." />
+                  <div class="card-body p-0">
+                    <p class="card-text text-center small-font">
+                      {{ s.name }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header border-0 bg-white pt-3">會員專屬加值服務</div>
+          <div class="card-body p-2 pt-0">
+            <div class="scroll-items d-flex flex-row">
+              <div v-for="s in serviceList" :key="s.id" class="w-25">
+                <div class="card p-1 border-0" style="">
+                  <img :src="s.src" class="card-img-top" alt="..." />
+                  <div class="card-body p-0">
+                    <p class="card-text text-center small-font">
+                      {{ s.name }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header border-0 bg-white pt-3">會員專屬加值服務</div>
+          <div class="card-body p-2 pt-0">
+            <div class="scroll-items d-flex flex-row">
+              <div v-for="s in serviceList" :key="s.id" class="w-15">
+                <div class="card p-1 border-0" style="">
+                  <img :src="s.src" class="card-img-top" alt="..." />
+                  <div class="card-body p-0">
+                    <p class="card-text text-center small-font">
+                      {{ s.name }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3">
           <div class="card-header border-0 bg-white pt-3">會員專屬加值服務</div>
           <div class="card-body p-2 pt-0">
             <div class="scroll-items d-flex flex-row">
@@ -283,13 +470,20 @@ const modules = [Autoplay, Pagination, Navigation, EffectCoverflow];
     </div>
   </main>
   <!-- Footer -->
-  <footer class="position-fixed bottom-0">footer</footer>
+  <footer class="position-fixed" style="bottom: 0; left: 0; z-index: 100">
+    footer
+  </footer>
 </template>
 
 <style scoped lang="scss">
 header {
   background-color: #ffffff00;
-
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 100;
   .top {
     background-color: #fafafa;
     width: 100%;
@@ -332,5 +526,35 @@ header {
 
 .small-font {
   font-size: 10px;
+}
+
+.no-scroll-bar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.skip {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.w-15 {
+  width: 15%;
+}
+
+footer {
+  background-color: #ffffff00;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
 }
 </style>
